@@ -1,6 +1,6 @@
 # swift-hashed
 
-[![Swift 6.0](https://img.shields.io/badge/Swift-6.0_|_5.9-ED523F.svg?style=flat)](https://swift.org/download/) ![Platforms](https://img.shields.io/badge/Platforms-iOS_|_macOS_|_tvOS_|_watchOS_|_Catalyst-ED523F.svg?style=flat) [![@capture_context](https://img.shields.io/badge/Contact-@capture__context-1DA1F2.svg?style=flat&logo=twitter)](https://twitter.com/capture_context)
+[![CI](https://github.com/CaptureContext/swift-hashed/actions/workflows/ci.yml/badge.svg)](https://github.com/CaptureContext/swift-hashed/actions/workflows/ci.yml) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FCaptureContext%2Fswift-hashed%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/CaptureContext/swift-hashed) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FCaptureContext%2Fswift-hashed%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/CaptureContext/swift-hashed)
 
 Hashable wrapper type and a set of explicit hashing strategies.
 
