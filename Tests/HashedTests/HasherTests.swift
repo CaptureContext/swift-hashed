@@ -44,7 +44,7 @@ struct HasherTests {
 	func detectHashable() {
 		do {
 			let sut: Hashed<NotHashable>.Hasher = .detectHashable(
-				fallback: .hashed(by: "fallback")
+				fallback: .hashable("fallback")
 			)
 
 			#expect(sut.hashValue(for: NotHashable()) == "fallback".hashValue)
@@ -59,12 +59,12 @@ struct HasherTests {
 	@Test
 	func hashedBy() async throws {
 		do {
-			let sut: Hashed<NotHashable>.Hasher = .hashed(by: "fallback")
+			let sut: Hashed<NotHashable>.Hasher = .hashable("fallback")
 			#expect(sut.hashValue(for: NotHashable()) == "fallback".hashValue)
 		}
 
 		do {
-			let sut: Hashed<Int>.Hasher = .hashed(by: "fallback")
+			let sut: Hashed<Int>.Hasher = .hashable("fallback")
 			#expect(sut.hashValue(for: 0) == "fallback".hashValue)
 		}
 	}
