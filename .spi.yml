@@ -1,20 +1,28 @@
 version: 1
 builder:
-	configs:
-	- platform: ios
-		scheme: Hashed
-	- platform: macos-xcodebuild
-		scheme: Hashed
-	- platform: tvos
-		scheme: Hashed
-	- platform: watchos
-		scheme: Hashed
-	- platform: linux
-		scheme: Hashed
-		swift_version: '5.9'
-	- platform: linux
-		scheme: Hashed
-		swift_version: '6.0'
+  configs:
+  - platform: ios
+    scheme: Hashed
 
-	- documentation_targets:
-		- Hashed
+  - platform: macos-spm
+    scheme: Hashed
+
+  - platform: macos-xcodebuild
+    scheme: Hashed
+
+  - platform: tvos
+    scheme: Hashed
+
+  - platform: watchos
+    scheme: Hashed
+
+  - platform: linux
+    scheme: Hashed
+    swift_version: '5.9'
+
+  - platform: linux
+    scheme: Hashed
+    swift_version: '6.0'
+
+  - documentation_targets:
+    - Hashed
