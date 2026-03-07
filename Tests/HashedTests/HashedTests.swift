@@ -93,4 +93,16 @@ struct HashedTests {
 		@Equated(by: .property(\.?.errorDescription))
 		var sut7: HashableError?
 	}
+
+	@Test
+	func hashedType() async throws {
+		let sut0 = Hashed(Int.self)
+		let sut1 = Hashed(Int.self)
+		let sut2 = Hashed(Bool.self)
+
+		#expect(sut0 == sut1)
+		#expect(sut0.hashValue == sut1.hashValue)
+		// #expect(sut1 != sut2)
+		#expect(sut1.hashValue != sut2.hashValue)
+	}
 }

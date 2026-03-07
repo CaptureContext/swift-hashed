@@ -21,14 +21,6 @@ extension Hashed.Hasher {
 			}
 		}
 	}
-
-	public static func uncheckedSendable<T: Hashable>(
-		_ other: T
-	) -> Self {
-		.uncheckedSendable { _, hasher in
-			other.hash(into: &hasher)
-		}
-	}
 }
 
 extension Hashed.Hasher where Value: Sendable {
@@ -43,11 +35,21 @@ extension Hashed.Hasher where Value: Sendable {
 			}
 		}
 	}
+}
 
+extension Hashed.Hasher {
 	public static func hashable<T: Hashable & Sendable>(
 		_ other: T
 	) -> Self {
 		.custom { _, hasher in
+			other.hash(into: &hasher)
+		}
+	}
+
+	public static func uncheckedSendable<T: Hashable>(
+		_ other: T
+	) -> Self {
+		.uncheckedSendable { _, hasher in
 			other.hash(into: &hasher)
 		}
 	}

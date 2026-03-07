@@ -1,6 +1,6 @@
 import Foundation
 
-extension Hashed.Hasher where Value: Sendable {
+extension Hashed.Hasher {
 	@inlinable
 	public static func property<Property: Hashable & Sendable>(
 		_ scope: @escaping @Sendable (Value) -> Property
