@@ -95,37 +95,28 @@ It is typically most useful as a fallback, for example:
 
 ### Basic
 
-You can add Hashed to an Xcode project by adding it as a package dependency.
+You can add `swift-hashed` to an Xcode project by adding it as a package dependency.
 
 1. From the **File** menu, select **Swift Packages › Add Package Dependency…**
 2. Enter [`"https://github.com/capturecontext/swift-hashed"`](https://github.com/capturecontext/swift-hashed) into the package repository URL text field
-3. Choose products you need to link them to your project.
+3. Choose products you need to link to your project.
 
 ### Recommended
 
-If you use SwiftPM for your project structure, add Hashed to your package file.
+If you use SwiftPM for your project structure, add `swift-hashed` dependency to your package file
 
 ```swift
 .package(
-  url: "https://github.com/capturecontext/swift-hashed.git",
-  .upToNextMinor(from: "0.0.1")
+  url: "https://github.com/capturecontext/swift-hashed.git", 
+  .upToNextMinor("0.0.5")
 )
 ```
 
-or via HTTPS
-
-```swift
-.package(
-  url: "https://github.com/capturecontext/swift-hashed.git",
-  .upToNextMinor("0.0.1")
-)
-```
-
-Do not forget about target dependencies:
+Do not forget about target dependencies
 
 ```swift
 .product(
-  name: "Hashed",
+  name: "Hashed", 
   package: "swift-hashed"
 )
 ```
