@@ -1,0 +1,276 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
+// swift-module-flags: -target arm64-apple-tvos12.0-simulator -enable-objc-interop -swift-version 6 -O -module-name Hashed -package-name swift_hashed
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.3
+@_exported import Equated
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension Hashed.Hashed where Value : Swift.Error {
+  @inlinable public init(_ wrappedValue: Value) {
+		self.init(wrappedValue: wrappedValue)
+	}
+  @inlinable public init(wrappedValue: Value) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: .localizedDescription
+		)
+	}
+}
+extension Hashed.Hashed where Value : Swift.Equatable, Value : Swift.Error {
+  @inlinable public init(_ wrappedValue: Value) {
+		self.init(wrappedValue: wrappedValue)
+	}
+  @inlinable public init(wrappedValue: Value) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: .localizedDescription
+		)
+	}
+}
+extension Hashed.Hashed where Value : Swift.Error, Value : Swift.Hashable {
+  @inlinable public init(_ wrappedValue: Value) {
+		self.init(wrappedValue: wrappedValue)
+	}
+  @inlinable public init(wrappedValue: Value) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: .defaultHashable
+		)
+	}
+}
+extension Hashed.Hashed where Value : Swift.Hashable {
+  @inlinable public init(wrappedValue: Value) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: .defaultHashable
+		)
+	}
+  @inlinable public init(_ wrappedValue: Value) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: .defaultHashable
+		)
+	}
+}
+extension Hashed.Hashed where Value : Swift.ExpressibleByNilLiteral {
+  @_disfavoredOverload @inlinable public init(by hasher: Hashed.Hashed<Value>.Hasher = .uncheckedSendableDetectHashable()) {
+		self.init(
+			storedValue: .init(nil),
+			hasher: hasher
+		)
+	}
+}
+extension Hashed.Hashed where Value : Swift.ExpressibleByNilLiteral, Value : Swift.Sendable {
+  @_disfavoredOverload @inlinable public init(by hasher: Hashed.Hashed<Value>.Hasher = .detectHashable()) {
+		self.init(
+			storedValue: .init(nil),
+			hasher: hasher
+		)
+	}
+}
+extension Hashed.Hashed where Value : Swift.ExpressibleByNilLiteral, Value : Swift.Hashable {
+  @inlinable public init() {
+		self.init(nil)
+	}
+}
+extension Hashed.Hashed where Value : Swift.ExpressibleByNilLiteral, Value : Swift.Hashable, Value : Swift.Sendable {
+  @inlinable public init() {
+		self.init(nil)
+	}
+}
+extension Hashed.Hashed where Value : Swift.Error, Value : Swift.ExpressibleByNilLiteral {
+  @inlinable public init() {
+		self.init(nil)
+	}
+}
+extension Hashed.Hashed where Value : Swift.Error, Value : Swift.ExpressibleByNilLiteral, Value : Swift.Hashable {
+  @inlinable public init() {
+		self.init(nil)
+	}
+}
+extension Hashed.Hashed where Value : Swift.Sendable {
+  @_disfavoredOverload @inlinable public init(wrappedValue: Value) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: .detectHashable()
+		)
+	}
+}
+extension Hashed.Hashed {
+  @inlinable public init<T>(_: T.Type = T.self) where Value == T.Type {
+		self.init(
+			storedValue: Equated(T.self),
+			hasher: .typeID()
+		)
+	}
+}
+public protocol _HashedProtocol<Value> : Swift.Hashable {
+  associatedtype Value
+  var storedValue: Equated.Equated<Self.Value> { get set }
+  var hasher: Hashed.Hashed<Self.Value>.Hasher { get set }
+  var wrappedValue: Self.Value { get set }
+}
+@propertyWrapper public struct Hashed<Value> : Hashed._HashedProtocol {
+  @inlinable public static func == (lhs: Hashed.Hashed<Value>, rhs: Hashed.Hashed<Value>) -> Swift.Bool {
+		lhs.storedValue == rhs.storedValue
+	}
+  public var storedValue: Equated.Equated<Value>
+  public var hasher: Hashed.Hashed<Value>.Hasher
+  public var wrappedValue: Value {
+    _read
+    _modify
+  }
+  public var projectedValue: Hashed.Hashed<Value> {
+    get
+    set
+  }
+  @inlinable public init(storedValue: Equated.Equated<Value>, hasher: Hashed.Hashed<Value>.Hasher) {
+		self.storedValue = storedValue
+		self.hasher = hasher
+	}
+  @_disfavoredOverload @inlinable public init(_ wrappedValue: Value, by hasher: Hashed.Hashed<Value>.Hasher) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: hasher
+		)
+	}
+  @_disfavoredOverload @inlinable public init(wrappedValue: Value, by hasher: Hashed.Hashed<Value>.Hasher = .uncheckedSendableDetectHashable()) {
+		self.init(
+			storedValue: .init(wrappedValue),
+			hasher: hasher
+		)
+	}
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Hashed.Hashed : Swift.Sendable where Value : Swift.Sendable {
+}
+@available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+extension Hashed.Hashed : Swift.Identifiable where Value : Swift.Identifiable {
+  @inlinable public var id: Value.ID {
+    get { wrappedValue.id }
+  }
+  @available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
+  public typealias ID = Value.ID
+}
+extension Hashed.Hashed : Swift.Comparable where Value : Swift.Comparable {
+  @inlinable public static func < (lhs: Hashed.Hashed<Value>, rhs: Hashed.Hashed<Value>) -> Swift.Bool {
+		lhs.wrappedValue < rhs.wrappedValue
+	}
+}
+extension Hashed.Hashed : Swift.Error where Value : Swift.Error {
+  @inlinable public var localizedDescription: Swift.String {
+    get { wrappedValue.localizedDescription }
+  }
+}
+extension Hashed.Hashed : Foundation.LocalizedError where Value : Foundation.LocalizedError {
+  @inlinable public var errorDescription: Swift.String? {
+    get { wrappedValue.errorDescription }
+  }
+  @inlinable public var failureReason: Swift.String? {
+    get { wrappedValue.failureReason }
+  }
+  @inlinable public var recoverySuggestion: Swift.String? {
+    get { wrappedValue.recoverySuggestion }
+  }
+  @inlinable public var helpAnchor: Swift.String? {
+    get { wrappedValue.helpAnchor }
+  }
+}
+extension Hashed.Hashed {
+  public struct Hasher : Swift.Sendable {
+    @usableFromInline
+    internal let hash: @Sendable (Value, inout Swift.Hasher) -> Swift.Void
+    @usableFromInline
+    internal init(hash: @escaping @Sendable (Value, inout Swift.Hasher) -> Swift.Void)
+    @inlinable public func hash(_ value: Value, into hasher: inout Swift.Hasher) {
+			hash(value, &hasher)
+		}
+    @inlinable public func hashValue(for value: Value) -> Swift.Int {
+			var hasher = Swift.Hasher()
+			self.hash(value, into: &hasher)
+			return hasher.finalize()
+		}
+  }
+}
+extension Hashed.Hashed.Hasher {
+  @inlinable public static var empty: Hashed.Hashed<Value>.Hasher {
+    get {
+		.uncheckedSendable { _, _ in }
+	}
+  }
+  @inlinable public static func custom(_ hash: @escaping @Sendable (Value, inout Swift.Hasher) -> Swift.Void) -> Hashed.Hashed<Value>.Hasher {
+		return .init(hash: hash)
+	}
+  public static var uncheckedSendableDump: Hashed.Hashed<Value>.Hasher {
+    get
+  }
+}
+extension Hashed.Hashed.Hasher where Value : Swift.Sendable {
+  public static var dump: Hashed.Hashed<Value>.Hasher {
+    get
+  }
+}
+extension Hashed.Hashed.Hasher where Value : AnyObject {
+  public static var objectID: Hashed.Hashed<Value>.Hasher {
+    get
+  }
+}
+extension Hashed.Hashed.Hasher where Value : Swift.Error {
+  @inlinable public static var localizedDescription: Hashed.Hashed<Value>.Hasher {
+    get {
+		.property(\.localizedDescription)
+	}
+  }
+}
+extension Hashed.Hashed.Hasher where Value : Swift.Hashable {
+  @inlinable public static var defaultHashable: Hashed.Hashed<Value>.Hasher {
+    get {
+		return .uncheckedSendable { value, hasher in
+			value.hash(into: &hasher)
+		}
+	}
+  }
+}
+extension Hashed.Hashed.Hasher {
+  public static func uncheckedSendableDetectHashable(fallback: Hashed.Hashed<Value>.Hasher = .uncheckedSendableDump) -> Hashed.Hashed<Value>.Hasher
+}
+extension Hashed.Hashed.Hasher where Value : Swift.Sendable {
+  public static func detectHashable(fallback: Hashed.Hashed<Value>.Hasher = .dump) -> Hashed.Hashed<Value>.Hasher
+}
+extension Hashed.Hashed.Hasher {
+  public static func hashable<T>(_ other: T) -> Hashed.Hashed<Value>.Hasher where T : Swift.Hashable, T : Swift.Sendable
+  public static func uncheckedSendable<T>(_ other: T) -> Hashed.Hashed<Value>.Hasher where T : Swift.Hashable
+}
+extension Hashed.Hashed.Hasher {
+  @inlinable public static func property<Property>(_ scope: @escaping @Sendable (Value) -> Property) -> Hashed.Hashed<Value>.Hasher where Property : Swift.Hashable, Property : Swift.Sendable {
+		return .custom { scope($0).hash(into: &$1) }
+	}
+}
+extension Hashed.Hashed.Hasher {
+  @inlinable public static func uncheckedSendable<Property>(_ scope: @escaping (Value) -> Property) -> Hashed.Hashed<Value>.Hasher where Property : Swift.Hashable {
+		return .uncheckedSendable { scope($0).hash(into: &$1) }
+	}
+}
+extension Hashed.Hashed.Hasher {
+  @inlinable public static func uncheckedSendable(_ hash: @escaping (Value, inout Swift.Hasher) -> Swift.Void) -> Hashed.Hashed<Value>.Hasher {
+		let hash = _UncheckedSendable(action: hash)
+		return .custom(hash.callAsFunction)
+	}
+  @usableFromInline
+  internal struct _UncheckedSendable : @unchecked Swift.Sendable {
+    private var action: (Value, inout Swift.Hasher) -> Swift.Void
+    @usableFromInline
+    internal init(action: @escaping (Value, inout Swift.Hasher) -> Swift.Void)
+    @usableFromInline
+    internal func callAsFunction(_ value: Value, into hasher: inout Swift.Hasher)
+  }
+}
+extension Hashed.Hashed.Hasher {
+  public static func typeID<T>() -> Hashed.Hashed<Value>.Hasher where Value == T.Type
+}
